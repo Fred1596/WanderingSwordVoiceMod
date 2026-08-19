@@ -1,0 +1,2 @@
+# WanderingSwordVoiceMod
+逸剑风云诀中文配音实现方案
