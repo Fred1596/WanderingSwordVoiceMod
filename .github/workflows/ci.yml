@@ -1,0 +1,41 @@
+name: source-checks
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  source-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Compile Python sources
+        run: python -m compileall -q bridge catalog scripts tests
+      - name: Run unit tests
+        run: python -m unittest discover -s tests -v
+      - name: Check repository hygiene
+        run: python scripts/check_repository_hygiene.py
+      - name: Parse PowerShell scripts
+        shell: pwsh
+        run: |
+          $failed = $false
+          Get-ChildItem -Recurse -Filter *.ps1 | ForEach-Object {
+            $tokens = $null
+            $errors = $null
+            [void][System.Management.Automation.Language.Parser]::ParseFile(
+              $_.FullName,
+              [ref]$tokens,
+              [ref]$errors
+            )
+            if ($errors.Count -gt 0) {
+              $failed = $true
+              Write-Error "PowerShell parse error in $($_.FullName): $errors"
+            }
+          }
+          if ($failed) { exit 1 }

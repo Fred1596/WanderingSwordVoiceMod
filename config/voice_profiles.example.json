@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "default_profile": "adult_male_calm",
+  "model": {
+    "backend": "qwen_voice_clone",
+    "path": "models/Qwen3-TTS-12Hz-0.6B-Base",
+    "language": "Chinese",
+    "device": "cuda:0",
+    "dtype": "bfloat16",
+    "attention": "sdpa"
+  },
+  "design_model": {
+    "path": "models/Qwen3-TTS-12Hz-1.7B-VoiceDesign",
+    "language": "Chinese",
+    "device": "cuda:0",
+    "dtype": "bfloat16",
+    "attention": "sdpa"
+  },
+  "playback": {
+    "interrupt_on_new_line": true,
+    "start_from_end": true
+  },
+  "speaker_overrides": {},
+  "speaker_rules": [
+    {
+      "pattern": "老者|老人|长老|掌门|方丈",
+      "profile": "elder_male_gentle"
+    },
+    {
+      "pattern": "少女|姑娘|女弟子",
+      "profile": "young_female_bright"
+    }
+  ],
+  "profiles": {
+    "adult_male_calm": {
+      "anchor_file": "voices/anchors/adult_male_calm.wav",
+      "anchor_text": "事情不必着急，先把眼前的线索理清，再决定下一步怎么走。",
+      "voice_design": "三十岁左右的成年男性，中低音，气息从容，表达自然克制，咬字清晰。"
+    },
+    "elder_male_gentle": {
+      "anchor_file": "voices/anchors/elder_male_gentle.wav",
+      "anchor_text": "年轻人肯踏实做事便是好的，路还长着，不必争这一时。",
+      "voice_design": "六十岁左右的男性长者，低沉温厚，略带岁月感，语速从容但不拖沓。"
+    },
+    "young_female_bright": {
+      "anchor_file": "voices/anchors/young_female_bright.wav",
+      "anchor_text": "你回来得正好，我刚发现一件有趣的事，快跟我来看看吧。",
+      "voice_design": "二十岁左右的年轻女性，音色清亮自然，反应机敏，表达爽朗但不夸张。"
+    },
+    "narrator": {
+      "anchor_file": "voices/anchors/narrator.wav",
+      "anchor_text": "暮色渐沉，远处风声掠过竹林，江湖中的故事仍在继续。",
+      "voice_design": "成熟克制的中文叙述声，节奏平稳，咬字清楚，只做必要的情绪提示。"
+    }
+  }
+}

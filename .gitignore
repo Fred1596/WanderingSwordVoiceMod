@@ -1,0 +1,80 @@
+# Python / editors
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+.idea/
+.vscode/
+
+# Secrets and machine-local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.pfx
+config/voice_profiles.json
+community_source/config/game_path.txt
+
+# Game assets and extracted localization (never commit copyrighted game data)
+extracted/
+catalog/raw/
+catalog/character_registry.csv
+catalog/profiles/*
+!catalog/profiles/character_profiles.json
+catalog/portraits/
+catalog/*.stats.json
+catalog/*_stats.json
+catalog/profile_conflicts.json
+catalog/profile_review_queue.json
+
+# Generated audio, anchors, manifests and runtime events
+offline/audio/
+offline/anchors/
+offline/manifest/
+voices/
+dialogue_events.jsonl
+unmatched_dialogue.jsonl
+*.wav
+*.mp3
+*.flac
+*.ogg
+
+# Model weights and caches
+models/
+cache/
+*.safetensors
+*.ckpt
+*.pt
+*.pth
+*.onnx
+
+# Third-party binaries must be downloaded from their original projects
+vendor/
+tools/repak/
+tools/uassetgui/
+tools/ueviewer/
+tools/python_packages/
+*.exe
+*.dll
+
+# Builds, logs and large archives
+community_release/
+dist/
+logs/
+outputs/
+previews/
+*.zip
+*.7z
+*.rar
+*.tar
+*.tar.gz
+*.tgz
+
+# OS files
+Thumbs.db
+Desktop.ini
+.DS_Store

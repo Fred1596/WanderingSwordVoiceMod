@@ -1,0 +1,5 @@
+qwen-tts==0.1.1
+soundfile>=0.12
+modelscope>=1.25
+requests>=2.31
+openai>=1.0
